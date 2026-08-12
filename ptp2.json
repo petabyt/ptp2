@@ -1,0 +1,77 @@
+{
+  "name": "ptp2-gphoto",
+  "draft": true,
+  "description": "Upstream ptp2 camlib from libgphoto2",
+  "website": "https://github.com/petabyt/libfuji",
+  "author": "Marcus Meissner",
+  "version": 1,
+  "moduleType": "so",
+  "modulePath": "libptp2.so",
+  "targets": [
+    {
+      "deviceType": "professional-camera",
+      "summary": "Sony mirrorless cameras",
+      "company": "Sony",
+      "wifiDiscovery": {
+        "ssidPattern": "DIRECT-.*"
+      },
+      "usbFilter": {
+        "vid": "0x054C"
+      }
+    },
+    {
+      "deviceType": "professional-camera",
+      "summary": "Nikon DSLRs and mirrorless cameras",
+      "company": "Nikon",
+      "wifiDiscovery": {
+        "ssidPattern": "Nikon_.*"
+      },
+      "usbFilter": {
+        "vid": "0x04B0"
+      }
+    },
+    {
+      "deviceType": "professional-camera",
+      "summary": "Canon DSLRs and mirrorless cameras",
+      "company": "Canon",
+      "wifiDiscovery": {
+        "ssidPattern": "EOS.*",
+        "ssidPattern2_TODO": "Canon_.*"
+      },
+      "usbFilter": {
+        "vid": "0x04A9"
+      }
+    },
+    {
+      "deviceType": "professional-camera",
+      "summary": "Ricoh GR cameras",
+      "company": "Ricoh",
+      "wifiDiscovery": {
+        "ssidPattern": "RICOH_.*",
+        "ssidPattern2_TODO": "THETA.*"
+      },
+      "usbFilter": {
+        "vid": "0x05CA"
+      }
+    },
+    {
+      "deviceType": "professional-camera",
+      "summary": "Olympus / OM System DSLRs and mirrorless cameras",
+      "company": "Olympus / OM System",
+      "wifiDiscovery": {
+        "ssidPattern": "OM-.*"
+      },
+      "usbFilter": {
+        "vid": "0x07B4"
+      }
+    },
+    {
+      "deviceType": "professional-camera",
+      "summary": "Sigma mirrorless cameras",
+      "company": "Sigma",
+      "usbFilter": {
+        "vid": "0x1003"
+      }
+    }
+  ]
+}
