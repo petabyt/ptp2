@@ -7,14 +7,14 @@ set(CMAKE_CXX_FLAGS_DEBUG -g)
 set(CMAKE_C_FLAGS_RELWITHDEBINFO -g)
 set(CMAKE_CXX_FLAGS_RELWITHDEBINFO -g)
 
-# find_package(PkgConfig)
-# if(PKG_CONFIG_FOUND AND NOT ANDROID)
-#     list(APPEND CMAKE_PREFIX_PATH "/usr/local")
-#     pkg_check_modules(LIBPAK IMPORTED_TARGET GLOBAL libpak)
-#     if(LIBPAK_FOUND)
-#         add_library(pak ALIAS PkgConfig::LIBPAK)
-#     endif()
-# endif()
+find_package(PkgConfig)
+if(PKG_CONFIG_FOUND AND NOT ANDROID)
+    list(APPEND CMAKE_PREFIX_PATH "/usr/local")
+    pkg_check_modules(LIBPAK IMPORTED_TARGET GLOBAL libpak)
+    if(LIBPAK_FOUND)
+        add_library(pakrt ALIAS PkgConfig::LIBPAK)
+    endif()
+endif()
 
 add_library(ptp2 SHARED
 	ptp2_upstream/chdk.c

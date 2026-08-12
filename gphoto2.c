@@ -26,6 +26,11 @@ char *gpi_vsnprintf(const char *format, va_list args) {
 	return NULL;
 }
 
+GPPort *gp_alloc_port(struct PakModule *mod) {
+	GPPort *port = calloc(1, sizeof(GPPort));
+	return port;
+}
+
 struct _GPPortPrivateCore {
 	int fd;
 };

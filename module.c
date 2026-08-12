@@ -12,6 +12,10 @@
 #include <runtime_ext.h>
 #include <wifi.h>
 
+struct _GPContext {
+	int foo;
+};
+
 struct ModulePriv {
 	GPContext *context;
 	Camera *camera;
@@ -22,10 +26,12 @@ struct _CameraPrivateCore {
 	struct PakModule *mod;
 };
 
+GPPort *gp_alloc_port(struct PakModule *mod);
+
 static int init(struct PakModule *mod) {
 	pak_debug_log(mod, "Hello from libgphoto2 module");
 	mod->priv = (struct ModulePriv *)calloc(sizeof(struct ModulePriv), 1);
-	mod->priv->context = calloc(1, sizeof(struct ModulePriv));
+	mod->priv->context = calloc(1, sizeof(GPContext));
 
 	pak_rt_set_screen_supported(mod, PAK_SCREEN_DASHBOARD, 1);
 	pak_rt_set_screen_supported(mod, PAK_SCREEN_FILE_GALLERY, 1);
@@ -38,15 +44,24 @@ static int on_free(struct PakModule *mod) {
 	return 0;
 }
 
-static int on_try_connect_wifi(struct PakModule *mod, struct PakWiFiAdapter *handle, struct PakSavedConnection *saved, int job) {
+static Camera *alloc_camera(struct PakModule *mod) {
 	Camera *camera = calloc(1, sizeof(Camera));
 	camera->functions = calloc(1, sizeof(CameraFunctions));
-	camera->pc        = calloc(1, sizeof(CameraPrivateCore));
+	camera->pc = calloc(1, sizeof(CameraPrivateCore));
+	camera->port = gp_alloc_port(mod);
 	camera->port->type = GP_PORT_PTPIP;
 	mod->priv->camera = camera;
 
 	camera_init(camera, mod->priv->context);
+	return camera;
+}
 
+static int on_try_connect_wifi(struct PakModule *mod, struct PakWiFiAdapter *handle, struct PakSavedConnection *saved, int job) {
+	return 0;
+}
+
+static int on_run_test(struct PakModule *mod, int job) {
+	Camera *cam = alloc_camera(mod);
 	return 0;
 }
 
@@ -74,10 +89,6 @@ static int on_request_file_metadata(struct PakModule *mod, int job, struct PakFi
 	return 0;
 }
 
-static int on_run_test(struct PakModule *mod, int screen, int job) {
-	return 0;
-}
-
 static int on_custom_command(struct PakModule *mod, int job, int argc, const char * const *argv) {
 	return 0;
 }
@@ -98,5 +109,6 @@ int get_module(struct PakModule *mod) {
 	mod->on_switch_screen = on_switch_screen;
 	mod->on_custom_command = on_custom_command;
 	mod->on_setting_changed = on_prop_changed;
+	mod->on_run_test = on_run_test;
 	return 0;
 }
