@@ -93,7 +93,7 @@ static int on_custom_command(struct PakModule *mod, int job, int argc, const cha
 	return 0;
 }
 
-static int on_prop_changed(struct PakModule *mod, int job, struct PakWidget *prop) {
+static int on_prop_changed(struct PakModule *mod, int job, const char *name, struct PakWidget *prop) {
 	return 0;
 }
 
