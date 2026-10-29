@@ -2,8 +2,8 @@
   "name": "ptp2-gphoto",
   "isDraft": true,
   "description": "Upstream ptp2 camlib from libgphoto2",
-  "website": "https://github.com/petabyt/libfuji",
   "author": "Marcus Meissner",
+  "license": "LGPL2.0",
   "version": 1,
   "moduleType": "so",
   "modulePath": "libptp2.so",
@@ -12,66 +12,66 @@
       "deviceType": "professional-camera",
       "summary": "Sony mirrorless cameras",
       "company": "Sony",
-      "wifiFilter": {
+      "wifiFilters": [{
         "ssidPattern": "DIRECT-.*"
-      },
-      "usbFilter": {
+      }],
+      "usbFilters": [{
         "vid": "0x054C"
-      }
+      }]
     },
     {
       "deviceType": "professional-camera",
       "summary": "Nikon DSLRs and mirrorless cameras",
       "company": "Nikon",
-      "wifiFilter": {
+      "wifiFilters": [{
         "ssidPattern": "Nikon_.*"
-      },
-      "usbFilter": {
+      }],
+      "usbFilters": [{
         "vid": "0x04B0"
-      }
+      }]
     },
     {
       "deviceType": "professional-camera",
       "summary": "Canon DSLRs and mirrorless cameras",
       "company": "Canon",
-      "wifiFilter": {
-        "ssidPattern": "EOS.*",
-        "ssidPattern2_TODO": "Canon_.*"
-      },
-      "usbFilter": {
+      "wifiFilters": [
+        {"ssidPattern": "EOS.*"},
+        {"ssidPattern": "Canon_.*"}
+      ],
+      "usbFilters": [{
         "vid": "0x04A9"
-      }
+      }]
     },
     {
       "deviceType": "professional-camera",
       "summary": "Ricoh GR cameras",
       "company": "Ricoh",
-      "wifiFilter": {
-        "ssidPattern": "RICOH_.*",
-        "ssidPattern2_TODO": "THETA.*"
-      },
-      "usbFilter": {
+      "wifiFilters": [
+        {"ssidPattern": "RICOH_.*"},
+        {"ssidPattern": "THETA.*"}
+      ],
+      "usbFilters": [{
         "vid": "0x05CA"
-      }
+      }]
     },
     {
       "deviceType": "professional-camera",
       "summary": "Olympus / OM System DSLRs and mirrorless cameras",
       "company": "Olympus / OM System",
-      "wifiFilter": {
+      "wifiFilters": [{
         "ssidPattern": "OM-.*"
-      },
-      "usbFilter": {
+      }],
+      "usbFilters": [{
         "vid": "0x07B4"
-      }
+      }]
     },
     {
       "deviceType": "professional-camera",
       "summary": "Sigma mirrorless cameras",
       "company": "Sigma",
-      "usbFilter": {
+      "usbFilters": [{
         "vid": "0x1003"
-      }
+      }]
     }
   ]
 }
